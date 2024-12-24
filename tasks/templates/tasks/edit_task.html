@@ -1,0 +1,58 @@
+{% extends "tasks/base.html" %}
+{% block content %}
+    <h2 class="text-center" style="color: #171717;">Редактирование задачи</h2>
+    
+    <h3 class="text-center">
+      {{task.title}}
+    </h3>
+
+    <div class="card-body">
+        <form action="{% url 'tasks:edit_task' task.id %}" method="post">
+          {% csrf_token %}
+          
+          <div class="form-group">
+            <label for="{{ form.title.id_for_label }}">Заголовок</label>
+            {{ form.title }}
+          </div>
+
+          <div class="form-group">
+            <label for="{{ form.text.id_for_label }}">Описание</label>
+            {{ form.text }}
+          </div>
+            <div class="form-group">
+                <label for="{{ form.end_date.id_for_label }}">Дата окончания</label>
+                {{ form.end_date }}
+            </div>
+
+          <div class="form-group">
+            <label for="{{ form.priority.id_for_label }}">Приоритет</label>
+            {{ form.priority }}
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-success">Сохранить</button>
+          </div>
+        </form>
+    </div>
+
+  <style>
+    .form-group label {
+      font-weight: bold;
+      color: #171717;
+    }
+
+    .btn-primary {
+      background-color: #171717;
+      border-color: #171717;
+    }
+    .btn-primary:hover {
+      background-color: #888888;
+    }
+    .container {
+      max-width: 600px;
+    }
+    .shadow-sm {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+{% endblock content %}
